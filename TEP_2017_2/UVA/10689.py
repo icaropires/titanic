@@ -11,20 +11,16 @@ for line in stdin:
     if count:
         a, b, n, m = [int(i) for i in line.split()]
 
-        if not n:
-            print(a)
-            continue
-        elif n == 1:
-            print(b)
-            continue
+        dp[0] = a % 10**m
+        dp[1] = b % 10**m
         
-        for i in range(1, 15000):
+        for i in range(2, 15000):
             tmp = a + b
             a = b
-            b = tmp%10**m
-            dp[i - 1] = b
+            b = tmp % 10**m
+            dp[i] = b
 
-        print(dp[n % 15000 - 2])
+        print(dp[n % 15000])
 
     else:
         cases = line
